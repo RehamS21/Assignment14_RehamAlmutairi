@@ -41,11 +41,6 @@ public class EmployeeController {
     }
     @DeleteMapping("/delete/{index}")
     public ResponseEntity deleteEmployee(@PathVariable int index){
-        if(index == 0)
-            return ResponseEntity.status(400).body("No employee to delete it ");
-        else if(index > employees.size())
-            return ResponseEntity.status(400).body("The index of employee exceed the exist employee");
-
         String name = employees.get(index).getName();
         employees.remove(index);
         return ResponseEntity.status(200).body(new ApiResponse("The employee with name '"+name+"' removed successfully"));
